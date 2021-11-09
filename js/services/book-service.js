@@ -3,12 +3,15 @@ import { books } from '../../database/books.js';
 import { storageService } from './async-storage-service.js';
 const BOOKS_KEY = 'books';
 var gBooks = books;
+const API_KEY = 'AIzaSyAQ_OtORbNSx-qcNp0UH-WlQf22Ht_P4Mg';
 export const bookService = {
   query,
   addReview,
   getById,
   getEmptyReview,
   removeReview,
+  googleBooksApi,
+  addGoogleBook,
 };
 
 function query() {
@@ -48,5 +51,59 @@ function getEmptyReview() {
     rating: null,
     reviewTxt: null,
     readDate: null,
+  };
+}
+function addGoogleBook(id) {
+  console.log(id);
+  return axios(
+    `https://www.googleapis.com/books/v1/volumes/${id}?${API_KEY}`
+  ).then((book) => {
+    let bookie = bookShell(id, book.data.volumeInfo, book.data.saleInfo);
+    storageService.post(BOOKS_KEY, bookie);
+  });
+}
+
+function googleBooksApi(search) {
+  return axios(
+    `https://www.googleapis.com/books/v1/volumes?printType=books&q=${search}&${API_KEY}`
+  ).then((books) => {
+    let book = books.data.items;
+    return book.map((data) => {
+      return data;
+    });
+  });
+}
+
+function bookShell(
+  id,
+  {
+    title,
+    subtitle,
+    authors,
+    publishedDate,
+    description,
+    printedPageCount,
+    categories,
+    imageLinks,
+    language,
+  },
+  listPrice
+) {
+  return {
+    id,
+    title,
+    subtitle,
+    authors,
+    publishedDate: new Date(publishedDate).getFullYear(),
+    description,
+    pageCount: printedPageCount,
+    categories,
+    thumbnail: imageLinks.thumbnail,
+    language,
+    listPrice: {
+      amount: Date.now() % 1000,
+      currencyCode: 'EUR',
+      isOnSale: listPrice.saleability === 'NOT_FOR_SALE' ? false : true,
+    },
   };
 }

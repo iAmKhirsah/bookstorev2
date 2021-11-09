@@ -9,7 +9,7 @@
 .book-details-content p {
   margin: 3px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: flex-start;
   flex-wrap: wrap;
 }

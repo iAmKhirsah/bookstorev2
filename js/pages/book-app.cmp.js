@@ -2,15 +2,18 @@ import { bookService } from '../services/book-service.js';
 import bookList from '../cmps/book-list.cmp.js';
 import bookFilter from '../cmps/book-filter.cmp.js';
 import bookDetails from './book-details.cmp.js';
+import bookAdd from '../cmps/book-add.cmp.js';
 export default {
   components: {
     bookList,
     bookFilter,
     bookDetails,
+    bookAdd,
   },
   template: `
     <section class="book-app flex ">
        <book-filter class="book-filter" @filtered="setFilter"/>
+       <book-add @AddedBook="loadBooks"></book-add>
        <book-list :books="booksToShow"/>
     </section>
 `,

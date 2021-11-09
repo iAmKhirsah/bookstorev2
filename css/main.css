@@ -6,6 +6,7 @@
 @import './book-review.css';
 @import './home-page.css';
 @import './about-page.css';
+@import './book-filter.css';
 * {
   box-sizing: border-box;
   margin: 0;
