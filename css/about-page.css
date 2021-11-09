@@ -1,0 +1,14 @@
+.about-page {
+  height: 93vh;
+  color: black;
+  font-size: 1.3rem;
+  text-align: center;
+}
+.about-page h1 {
+    margin-top: 20px;
+}
+
+.about-page p {
+    margin-top: 20px;
+    font-size: 1.3rem;
+}

@@ -1,0 +1,42 @@
+@import './book-list.css';
+@import './app-header.css';
+@import './app-footer.css';
+@import './book-details.css';
+@import './book-app.css';
+@import './book-review.css';
+@import './home-page.css';
+@import './about-page.css';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: rubik;
+  src: url(/font/Rubik-Regular.ttf);
+}
+body {
+  font-family: rubik;
+}
+.main-container {
+  flex-direction: column;
+  background-color: ghostwhite;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/*HELPERS */
+
+.main-size {
+  width: 1200px;
+}
+.flex {
+  display: flex;
+}
+
+.hide {
+  display: none;
+}

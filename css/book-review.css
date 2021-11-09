@@ -1,0 +1,27 @@
+.review-container {
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-container {
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.form-container .review-btn {
+  align-self: center;
+}
+.star-rating {
+  color: rgb(197, 177, 146);
+  justify-content: center;
+}
+.review-btn-container {
+  display: flex;
+  justify-content: space-between;
+}
+.review-btn {
+  border: none;
+  width: fit-content;
+  border-radius: 5px;
+  padding: 3px;
+  background-color: blanchedalmond;
+}

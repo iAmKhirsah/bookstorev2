@@ -1,0 +1,28 @@
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  justify-content: center;
+  gap: 10px;
+}
+
+.book-preview {
+  background-color: lightblue;
+  text-align: center;
+  flex-direction: column;
+  height: 300px;
+  width: 200px;
+}
+.book-preview img {
+  margin-top: 30px;
+}
+.book-preview img:hover {
+  cursor: pointer;
+}
+
+.book-preview p {
+  margin-top: 5px;
+}
+.book-preview-price {
+  font-size: 0.8rem;
+}
