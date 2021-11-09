@@ -2,7 +2,9 @@ export default {
   props: ['txt'],
   template: `
   <section>
-      <p>Description: {{tooLongDidntRead()}}</p>
+      <p v-if="tooLongDidntRead()">Description: {{tooLongDidntRead()}}</p>
+      <p v-else="tooLongDidntRead()">Description: No Description Available</p>
+
       <button class="tldr-btn" :class="isTldr" @click="fullDesc">Read More</button>
   </section>
     `,
@@ -16,6 +18,7 @@ export default {
     tooLongDidntRead() {
       const text = this.txt;
       if (this.fullTldr) return text;
+      if (!text) return;
       if (text.length > 100) {
         this.tldr = true;
       }

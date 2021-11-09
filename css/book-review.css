@@ -22,6 +22,9 @@
   background-color: blanchedalmond;
 }
 
+span.checked:hover {
+ filter: brightness(1.1)
+}
 span.checked {
   color: orange;
 }

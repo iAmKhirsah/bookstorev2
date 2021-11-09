@@ -17,7 +17,8 @@ export default {
         <h3>{{book.title}}</h3>
         <img :src="book.thumbnail" />
         <div class="book-details-content">
-        <p>{{book.title}} By {{authorsForDisplay}}</p>
+        <p v-if="authorsForDisplay">{{book.title}} By {{authorsForDisplay}}</p>
+        <p v-else="authorsForDisplay">{{book.title}} By No Authors Found</p>
         <p v-if="book.subtitle">Subtitle: {{book.subtitle}}</p>
         <p v-else="book.subtitle">No Subtitle</p>
         <p v-if="book.categories">Categories: {{categoriesForDisplay}}</p>
@@ -71,6 +72,7 @@ export default {
       else if (currency === 'USD') return '$';
     },
     authorsForDisplay() {
+      if (!this.book.authors) return;
       const bookAuthors = [...this.book.authors]
         .toString()
         .split(',')

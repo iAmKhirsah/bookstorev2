@@ -1,6 +1,7 @@
 import bookApp from './pages/book-app.cmp.js';
 import appHeader from './cmps/app-header.cmp.js';
 import appFooter from './cmps/app-footer.cmp.js';
+import userMsg from './cmps/user-msg.cmp.js';
 import { router } from './routes.js';
 const options = {
   el: '#app',
@@ -9,11 +10,13 @@ const options = {
     bookApp,
     appHeader,
     appFooter,
+    userMsg,
   },
   template: `<section class="main-container flex">
+                <user-msg />
                 <app-header />
                 <router-view />
-                <app-footer id="footer" />
+                <app-footer />
              </section>
             `,
 };

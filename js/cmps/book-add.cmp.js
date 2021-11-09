@@ -1,4 +1,5 @@
 import { bookService } from '../services/book-service.js';
+import { eventBus } from '../services/event-bus-service.js';
 
 export default {
   template: `
@@ -21,9 +22,26 @@ export default {
   methods: {
     onAddGoogleBook(id) {
       console.log(id);
-      bookService.addGoogleBook(id).then(() => {
-        this.$emit('AddedBook');
-      });
+      bookService
+        .addGoogleBook(id)
+        .then(() => {
+          this.$emit('AddedBook');
+        })
+        .then(() => {
+          const msg = {
+            txt: 'Book added',
+            type: 'success',
+          };
+          eventBus.$emit('showMsg', msg);
+        })
+        .catch((err) => {
+          console.log(err);
+          const msg = {
+            txt: 'Error, please contact our unpaid intern',
+            type: 'error',
+          };
+          eventBus.$emit('showMsg', msg);
+        });
       this.searchQuery = '';
     },
   },

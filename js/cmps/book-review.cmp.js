@@ -9,18 +9,6 @@ export default {
     <div class="stars">
       <span v-for="num in 5" class="fa fa-star" :class="{checked:num<=review.rating}" @click="changeColor(num)"></span>
     </div>
-    <!-- <select v-model.number="review.rating"  name="rating" required>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-    <div class="star-rating flex">
-    <div v-for="(rating) in this.review.rating">
-      <i class="fas fa-star"></i>
-    </div>
-    </div> -->
     <textarea v-model="review.reviewTxt" required></textarea>
     <input type="date" v-model="review.readDate" required/>
     <div class="review-btn-container">
@@ -77,9 +65,6 @@ export default {
     allReviews() {
       return (this.isAllReviews = !this.isAllReviews);
     },
-    // removeReview() {
-    //   bookService.removeReview(id);
-    // },
     changeColor(num) {
       this.review.rating = num;
     },
