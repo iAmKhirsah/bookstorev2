@@ -6,7 +6,10 @@ export default {
   <button @click="showReview" class="review-btn">Review</button>
     <form v-if="isReview" :class="toReview" class="form-container flex">
     <input type="text" v-model="review.fname"  placeholder="Enter full name" required>
-    <select v-model.number="review.rating"  name="rating" required>
+    <div class="stars">
+      <span v-for="num in 5" class="fa fa-star" :class="{checked:num<=review.rating}" @click="changeColor(num)"></span>
+    </div>
+    <!-- <select v-model.number="review.rating"  name="rating" required>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -17,7 +20,7 @@ export default {
     <div v-for="(rating) in this.review.rating">
       <i class="fas fa-star"></i>
     </div>
-    </div>
+    </div> -->
     <textarea v-model="review.reviewTxt" required></textarea>
     <input type="date" v-model="review.readDate" required/>
     <div class="review-btn-container">
@@ -77,6 +80,9 @@ export default {
     // removeReview() {
     //   bookService.removeReview(id);
     // },
+    changeColor(num) {
+      this.review.rating = num;
+    },
   },
   computed: {
     toReview() {

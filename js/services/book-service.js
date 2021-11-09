@@ -58,8 +58,9 @@ function getEmptyReview() {
 function addGoogleBook(id) {
   return axios(
     `https://www.googleapis.com/books/v1/volumes/${id}?${API_KEY}`
-  ).then((book) => {
-    let bookie = bookShell(id, book.data.volumeInfo, book.data.saleInfo);
+  ).then(({ data }) => {
+    console.log(data);
+    let bookie = bookShell(id, data.volumeInfo, data.saleInfo);
     storageService.post(BOOKS_KEY, bookie);
   });
 }

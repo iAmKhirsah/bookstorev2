@@ -1,22 +1,4 @@
 .book-filter {
   margin: 10px;
 }
-.search-query {
-  color: black;
-}
-.search-book-container {
-  /* display: flex;
-  flex-direction: column; */
-  width: fit-content;
-  font-size: 0.7rem;
-  background-color: white;
-}
-.query-and-button {
-  display: flex;
-  justify-content: space-between;
-  margin: 2px;
-}
-.query-and-button button {
-  width: 15px;
-  height: 20px;
-}
+

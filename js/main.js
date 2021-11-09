@@ -13,7 +13,7 @@ const options = {
   template: `<section class="main-container flex">
                 <app-header />
                 <router-view />
-                <app-footer />
+                <app-footer id="footer" />
              </section>
             `,
 };

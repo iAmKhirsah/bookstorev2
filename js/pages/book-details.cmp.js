@@ -14,13 +14,14 @@ export default {
       <router-link :to="'/book/details/'+prevBookId"> Previous Book </router-link>
       <router-link :to="'/book/details/'+nextBookId"> Next Book </router-link>
   </div>
-
         <h3>{{book.title}}</h3>
         <img :src="book.thumbnail" />
         <div class="book-details-content">
         <p>{{book.title}} By {{authorsForDisplay}}</p>
-        <p>Subtitle: {{book.subtitle}}</p>
-        <p>Categories: {{categoriesForDisplay}}</p>
+        <p v-if="book.subtitle">Subtitle: {{book.subtitle}}</p>
+        <p v-else="book.subtitle">No Subtitle</p>
+        <p v-if="book.categories">Categories: {{categoriesForDisplay}}</p>
+        <p v-else="book.categories">No Categories</p>
         <p>Price: {{currencyForDisplay}} <span :class="isExpensive">{{book.listPrice.amount}} {{isOnSale}}</span></p>
         <book-review :book="book"/>
         <p>Language: {{book.language}}</p>
@@ -28,9 +29,6 @@ export default {
         <p>Book length: {{book.pageCount}}, {{pageCountForDisplay}}</p>
         <book-desc :txt="book.description"/>
       </div>
-      <!-- <router-link to="/book">
-      <button class="close-details">Back</button>
-      </router-link> -->
     </section>
     `,
   data() {

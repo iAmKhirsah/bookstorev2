@@ -4,7 +4,7 @@ export default {
   template: `
   <section class="add-book">
         <div class="search-book-container">
-        <input v-model.lazy="searchQuery" type="text" placeholder="Search New Book">
+        <input v-model.lazy="searchQuery" type="text" placeholder="Search New Book" >
         <div v-if="searchResults" v-for="result in searchResults" class="query-and-button">
         <p class="search-query">{{result.title}}</p>
         <button @click="onAddGoogleBook(result.id)">+</button>
@@ -23,8 +23,8 @@ export default {
       console.log(id);
       bookService.addGoogleBook(id).then(() => {
         this.$emit('AddedBook');
-        this.searchQuery = '';
       });
+      this.searchQuery = '';
     },
   },
   watch: {

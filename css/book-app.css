@@ -3,3 +3,36 @@
   align-items: center;
   background-image: url(/img/background.jpg);
 }
+.search-query {
+  color: black;
+  margin-inline-end: 5px;
+  margin-inline-start: 5px;
+}
+.search-query:hover {
+  color: blanchedalmond;
+}
+.search-book-container {
+  width: fit-content;
+  font-size: 0.7rem;
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: lightblue;
+}
+
+.search-book-container input {
+  width: 100%;
+}
+.search-book-container button {
+  border: none;
+  border-radius: 5px;
+  width: 15px;
+  height: 100%;
+  cursor: pointer;
+}
+
+.query-and-button {
+  display: flex;
+  justify-content: space-between;
+  margin: 2px;
+  border-bottom: 1px solid black;
+}
