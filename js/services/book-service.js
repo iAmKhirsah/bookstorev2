@@ -12,6 +12,8 @@ export const bookService = {
   removeReview,
   googleBooksApi,
   addGoogleBook,
+  getNextBookId,
+  getPrevBookId,
 };
 
 function query() {
@@ -54,7 +56,6 @@ function getEmptyReview() {
   };
 }
 function addGoogleBook(id) {
-  console.log(id);
   return axios(
     `https://www.googleapis.com/books/v1/volumes/${id}?${API_KEY}`
   ).then((book) => {
@@ -106,4 +107,17 @@ function bookShell(
       isOnSale: listPrice.saleability === 'NOT_FOR_SALE' ? false : true,
     },
   };
+}
+
+function getNextBookId(bookId) {
+  return query().then((books) => {
+    const idx = books.findIndex((book) => book.id === bookId);
+    return idx === books.length - 1 ? books[0].id : books[idx + 1].id;
+  });
+}
+function getPrevBookId(bookId) {
+  return query().then((books) => {
+    const idx = books.findIndex((book) => book.id === bookId);
+    return idx === books.length - 1 ? books[0].id : books[idx - 1].id;
+  });
 }

@@ -10,6 +10,11 @@ export default {
   },
   template: `
     <section v-if="book" class="book-details" >
+    <div class="next-prev-buttons flex">
+      <router-link :to="'/book/details/'+prevBookId"> Previous Book </router-link>
+      <router-link :to="'/book/details/'+nextBookId"> Next Book </router-link>
+  </div>
+
         <h3>{{book.title}}</h3>
         <img :src="book.thumbnail" />
         <div class="book-details-content">
@@ -23,19 +28,36 @@ export default {
         <p>Book length: {{book.pageCount}}, {{pageCountForDisplay}}</p>
         <book-desc :txt="book.description"/>
       </div>
-      <router-link to="/book">
+      <!-- <router-link to="/book">
       <button class="close-details">Back</button>
-      </router-link>
+      </router-link> -->
     </section>
     `,
   data() {
     return {
       book: null,
+      nextBookId: null,
+      prevBookId: null,
     };
   },
   created() {
     const { bookId } = this.$route.params;
     bookService.getById(bookId).then((book) => (this.book = book));
+  },
+  watch: {
+    '$route.params.bookId': {
+      handler() {
+        const { bookId } = this.$route.params;
+        bookService.getById(bookId).then((book) => (this.book = book));
+        bookService
+          .getNextBookId(bookId)
+          .then((bookId) => (this.nextBookId = bookId));
+        bookService
+          .getPrevBookId(bookId)
+          .then((bookId) => (this.prevBookId = bookId));
+      },
+      immediate: true,
+    },
   },
   computed: {
     isOnSale() {

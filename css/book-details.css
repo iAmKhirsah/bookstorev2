@@ -39,3 +39,6 @@
   padding: 3px;
   background-color: blanchedalmond;
 }
+.next-prev-buttons{
+  justify-content: space-between;
+}
